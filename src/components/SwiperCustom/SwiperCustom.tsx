@@ -26,7 +26,9 @@ export const SwiperCustom = () => {
     const generateSlides = () => {
         return [0, 1, 2].map((_, index) => {
             return <SwiperSlide key={index}
-                                className={`${s.slide} ${activeIndex === index ? s.slide_center : ''}`}>Slide {index}</SwiperSlide>
+                                className={`${s.slide} ${activeIndex === index ? s.slide_center : ''}`}>
+                <img src={'https://www.gk-profit.ru/file/photopic/thumb1/f979529b8e14af27bf2465ad1f8b4a61.jpg'} alt={'plan'}/>
+            </SwiperSlide>
         })
     }
 
