@@ -1,0 +1,11 @@
+.imageZoomWrapper{
+    width: 100%;
+    height: 100%;
+    /*background: #d0a7c2;*/
+}
+.planImage{
+
+}
+.planImage > img{
+    width: 100%;
+}

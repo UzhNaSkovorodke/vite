@@ -1,11 +1,11 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/css';
 import s from './style.module.css'
 import { useEffect, useState } from "react";
 import { Swiper as SwiperClass } from "swiper/types";
+import { planImg } from "../../const/const.ts";
 
 export const SwiperCustom = () => {
     const [swiperRef, setSwiperRef] = useState<SwiperClass | null>(null);
@@ -27,13 +27,15 @@ export const SwiperCustom = () => {
         return [0, 1, 2].map((_, index) => {
             return <SwiperSlide key={index}
                                 className={`${s.slide} ${activeIndex === index ? s.slide_center : ''}`}>
-                <img src={'https://www.gk-profit.ru/file/photopic/thumb1/f979529b8e14af27bf2465ad1f8b4a61.jpg'} alt={'plan'}/>
+                <img src={planImg} alt={'plan'}/>
+                {/*<ImageZoom/>*/}
             </SwiperSlide>
         })
     }
 
     return <div className={s.swiperWrapper}>
         <Swiper
+            //allowTouchMove={false} вкупе с planImg будет работать только при false
             initialSlide={1}
             onSwiper={setSwiperRef}
             spaceBetween={40}
