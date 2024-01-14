@@ -4,28 +4,40 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import s from './style.module.css'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Swiper as SwiperClass } from "swiper/types";
+
 export const SwiperCustom = () => {
     const [swiperRef, setSwiperRef] = useState<SwiperClass | null>(null);
-
-    const slideTo = (index : number) => {
+    const [activeIndex, setActiveIndex] = useState<number>(1);
+    // swiperRef?.on('slideChange', () => {
+    //     console.log(swiperRef?.activeIndex)
+    // })
+    const onSlideChangeHandler = (swiper: SwiperClass) => {
+        setActiveIndex(swiper.activeIndex)
+    }
+    const slideTo = (index: number) => {
         swiperRef?.slideTo(index - 1, 0);
     };
 
+    useEffect(() => {
+        // console.log(activeIndex)
+    }, [activeIndex]);
     const generateSlides = () => {
-        return [1, 2, 3].map((index) => {
-            return <SwiperSlide className={`${s.slide} ${index === 2 ? s.slide_center : ''}`}>Slide {index}</SwiperSlide>
+        return [0, 1, 2].map((_, index) => {
+            return <SwiperSlide key={index}
+                                className={`${s.slide} ${activeIndex === index ? s.slide_center : ''}`}>Slide {index}</SwiperSlide>
         })
     }
 
     return <div className={s.swiperWrapper}>
         <Swiper
+            initialSlide={1}
             onSwiper={setSwiperRef}
             spaceBetween={40}
             slidesPerView={'auto'}
             centeredSlides={true}
-            onSlideChange={() => console.log('slide change')}
+            onSlideChange={onSlideChangeHandler}
         >
             {generateSlides()}
         </Swiper>
