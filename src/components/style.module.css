@@ -1,0 +1,35 @@
+.swiper {
+
+}
+.swiperWrapper{
+    width: 90vw;
+}
+.slide{
+    width: 300px;
+
+    background: #a7a9d0;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slide_center{
+    width: 600px;
+    background: #d0a7c2;
+}
+
+.slide {
+}
+
+.slide:nth-child(3) {
+    width: 400px;
+
+}
+.slide_center{
+    width: 1000px;
+}
+
+.slide:nth-child(1) {
+    width: 400px;
+
+}
