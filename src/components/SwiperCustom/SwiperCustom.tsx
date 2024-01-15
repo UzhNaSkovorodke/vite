@@ -6,6 +6,7 @@ import s from './style.module.css'
 import { useEffect, useState } from "react";
 import { Swiper as SwiperClass } from "swiper/types";
 import { planImg } from "../../const/const.ts";
+import { SwiperControl } from "./SwiperControl/SwiperControl.tsx";
 
 export const SwiperCustom = () => {
     const [swiperRef, setSwiperRef] = useState<SwiperClass | null>(null);
@@ -17,7 +18,7 @@ export const SwiperCustom = () => {
         setActiveIndex(swiper.activeIndex)
     }
     const slideTo = (index: number) => {
-        swiperRef?.slideTo(index - 1, 0);
+        swiperRef?.slideTo(index, 0);
     };
 
     useEffect(() => {
@@ -45,7 +46,6 @@ export const SwiperCustom = () => {
         >
             {generateSlides()}
         </Swiper>
-
-        <button onClick={() => slideTo(1)}>To 1</button>
+        <SwiperControl slideTo={slideTo} activeIndex={activeIndex}/>
     </div>
 }
