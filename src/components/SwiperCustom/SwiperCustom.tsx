@@ -5,10 +5,13 @@ import 'swiper/css';
 import s from './style.module.css'
 import { useEffect, useState } from "react";
 import { Swiper as SwiperClass } from "swiper/types";
-import { planImg } from "../../const/const.ts";
 import { SwiperControl } from "./SwiperControl/SwiperControl.tsx";
+import { Floors } from "../../App.tsx";
+import { ImageZoom } from "../ImageZoom/ImageZoom.tsx";
 
-export const SwiperCustom = () => {
+export const SwiperCustom = ({floors}: {
+    floors: Floors
+}) => {
     const [swiperRef, setSwiperRef] = useState<SwiperClass | null>(null);
     const [activeIndex, setActiveIndex] = useState<number>(1);
     // swiperRef?.on('slideChange', () => {
@@ -18,18 +21,18 @@ export const SwiperCustom = () => {
         setActiveIndex(swiper.activeIndex)
     }
     const slideTo = (index: number) => {
-        swiperRef?.slideTo(index, 0);
+        swiperRef?.slideTo(index, 500);
     };
 
     useEffect(() => {
         // console.log(activeIndex)
     }, [activeIndex]);
     const generateSlides = () => {
-        return [0, 1, 2].map((_, index) => {
+        return floors.map((_, index) => {
             return <SwiperSlide key={index}
                                 className={`${s.slide} ${activeIndex === index ? s.slide_center : ''}`}>
-                <img src={planImg} alt={'plan'}/>
-                {/*<ImageZoom/>*/}
+                {/*<img src={planImg} alt={'plan'}/>*/}
+                <ImageZoom activeIndex={activeIndex}/>
             </SwiperSlide>
         })
     }
@@ -46,6 +49,6 @@ export const SwiperCustom = () => {
         >
             {generateSlides()}
         </Swiper>
-        <SwiperControl slideTo={slideTo} activeIndex={activeIndex}/>
+        <SwiperControl slideTo={slideTo} activeIndex={activeIndex} floors={floors}/>
     </div>
 }
