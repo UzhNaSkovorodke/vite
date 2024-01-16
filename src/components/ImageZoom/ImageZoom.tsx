@@ -9,6 +9,19 @@ export const ImageZoom = ({activeIndex}: { activeIndex: number }) => {
         transformRef.current ? transformRef.current.resetTransform(0) : null
     }, [activeIndex]);
 
+    const handleZoomIn = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault()
+        if (transformRef.current) {
+            transformRef.current.zoomIn()
+        }
+    }
+    const handleZoomOut = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault()
+        if (transformRef.current) {
+            transformRef.current.zoomOut()
+        }
+    }
+
     return <div className={s.imageZoomWrapper}>
         <TransformWrapper
             centerOnInit
@@ -22,5 +35,8 @@ export const ImageZoom = ({activeIndex}: { activeIndex: number }) => {
                 </div>
             </TransformComponent>
         </TransformWrapper>
+
+        <button onClick={(e) => handleZoomIn(e)} style={{padding: '10px'}}>+</button>
+        <button onClick={(e) => handleZoomOut(e)} style={{padding: '10px'}}>-</button>
     </div>
 }
