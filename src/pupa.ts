@@ -33,3 +33,11 @@ class MyPromise<T> {
         this.catchCallbacks.forEach((cb) => cb(reason))
     }
 }
+
+export const pyp = () => {
+
+    const promise = new Promise((resolve, reject) => {
+        reject(5)
+    }).then((value) => console.log('was resole ' + value)).catch((error) => console.log('was error ' + error))
+
+}
